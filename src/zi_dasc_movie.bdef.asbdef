@@ -1,0 +1,37 @@
+managed implementation in class zbp_DASC_movie unique;
+
+define behavior for ZI_DASC_Movie //alias <alias_name>
+persistent table zabap_movie_a
+lock master
+{
+  create;
+  update;
+  delete;
+  field ( readonly, numbering: managed ) MovieUuid;
+  association _Rating { create; }
+  validation validategenre on save { field Genre;}
+
+  action rateMovie parameter ZA_DASC_RATING;
+
+        mapping for zabap_rating_a corresponding  {
+
+      }
+}
+
+define behavior for Zi_DASC_Rating //alias <alias_name>
+persistent table zabap_rating_a
+lock dependent by _Movie
+{
+  update;
+  delete;
+  field ( readonly ) MovieUuid;
+  field ( readonly, numbering: managed ) RatingUuid;
+  association _Movie;
+  determination DeterminUserName on save{ field Rating; }
+
+      mapping for zabap_rating_a corresponding  {
+      Rating = rating;
+      }
+
+
+}

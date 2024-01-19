@@ -1,0 +1,5 @@
+@EndUserText.label: 'Movies'
+define service ZUI_DASC_Movies {
+  expose ZC_DASC_Movie;
+  expose ZC_DASC_Rating;
+}

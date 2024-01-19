@@ -1,0 +1,74 @@
+@Metadata.layer: #CORE
+@UI.headerInfo: {
+  typeNamePlural: 'Movies',
+  title: {value: 'Title'},
+  description: {value: 'Title'}
+}
+
+
+annotate view ZC_DASC_Movie
+  with 
+{
+//facets
+    @UI.facet: [  
+         {
+         position : 10,
+         type: #FIELDGROUP_REFERENCE,
+         targetQualifier: 'Bild',
+         url: 'TitleUrl'
+         },
+         {
+         position : 20,
+         label: 'Infos',
+         type: #FIELDGROUP_REFERENCE,
+         targetQualifier: 'Infos'
+         },
+         {     
+         position : 30,    
+         label: 'Rating',    
+         type: #LINEITEM_REFERENCE,    
+         targetElement: '_Rating'   
+         }
+
+         
+  ]
+  
+  
+  @UI.lineItem: [{ position: 10 },{ position: 10, type: #FOR_ACTION, dataAction: 'rateMovie', label:'Rate Movie' } ]
+  Title;
+  @UI.lineItem: [{ position: 20 }]
+  @UI.fieldGroup: [{ qualifier: 'Infos',position:15 }]
+  Genre;
+  @UI.lineItem: [{ position: 30 }]
+  @UI.fieldGroup: [{ qualifier: 'Infos',position:10 }]
+  PublishingYear;
+  @UI.fieldGroup: [{ qualifier: 'Infos',position:20 }]
+  @UI.lineItem: [{ position: 40 }]
+  RuntimeInMin;
+  @UI.lineItem: [ { position:5} ]
+  @UI.fieldGroup: [{ qualifier: 'Bild',position:10}]
+  TitleUrl;
+  @UI.lineItem: [ { 
+  position:50,
+  label: 'Rating',
+  valueQualifier: 'Rating',
+  type: #AS_DATAPOINT
+  } ]
+  @UI.dataPoint:{ 
+  targetValue: 5,
+  visualization: #RATING
+  }
+  Rating_AVG;
+  @UI.fieldGroup: [{ qualifier: 'Infos',position:30 }]
+  MovieUuid;
+  @UI.fieldGroup: [{ qualifier: 'Infos',position:40 }]
+  CreatedAt;
+  @UI.fieldGroup: [{ qualifier: 'Infos',position:50 }]
+  CreatedBy;
+  @UI.fieldGroup: [{ qualifier: 'Infos',position:60 }]
+  LastChangedAt;
+  @UI.fieldGroup: [{ qualifier: 'Infos',position:70 }]
+  LastChangedBy;
+  
+  
+}

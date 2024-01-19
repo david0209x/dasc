@@ -1,0 +1,45 @@
+@Metadata.layer: #CORE
+@UI.headerInfo: {
+  typeNamePlural: 'Ratings',
+  title: {value: 'UserName'}
+}
+annotate view ZC_DASC_Rating
+  with 
+{
+//facets
+    @UI.facet: [  
+         {
+         position : 10,
+         type: #FIELDGROUP_REFERENCE,
+         targetQualifier: 'Rating',
+         label: 'Rating Ansicht'
+         },
+         {
+         position : 20,
+         type: #FIELDGROUP_REFERENCE,
+         targetQualifier: 'Details',
+         label: 'Technische Details'
+         }
+  ]
+  
+   @UI.lineItem: [ { 
+  position:10,
+  label: 'Rating',
+  valueQualifier: 'Rating',
+  type: #AS_DATAPOINT
+  } ]
+  @UI.dataPoint:{ 
+  targetValue: 5,
+  visualization: #RATING
+  }
+ @UI.fieldGroup: [{ qualifier: 'Rating',position:10 }]
+ Rating;
+ @UI.lineItem: [{ position: 20 }]
+ @UI.fieldGroup: [{ qualifier: 'Rating',position:20 }]
+ UserName;
+ @UI.lineItem: [{ position: 30 }]
+ @UI.fieldGroup: [{ qualifier: 'Rating',position:30 }]
+ RatingDate;
+ @UI.fieldGroup: [{ qualifier: 'Details',position:10 }]
+ RatingUuid;
+}
